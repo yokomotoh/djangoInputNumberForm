@@ -1,0 +1,30 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Detail</title>
+{% endblock %}
+
+{% block content %}
+<h1>{{ object.test_number }}</h1>
+
+<p>{{ object.test_number }}</p>
+<p>multiple_ten: {{ object.multiple_ten }}</p>
+
+<hr>
+- <a href="{% url 'testnumber-update' object.id %} ">Update</a>
+- <a href="{% url 'testnumber-delete' object.id %}">Delete</a>
+{% endblock %}
+
+<!--DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<h1>{{ object.test_number }}</h1>
+
+<p>{{ object.test_number }}</p>
+<p>multiple_ten: {{ object.multiple_ten }}</p>
+</body>
+</html-->

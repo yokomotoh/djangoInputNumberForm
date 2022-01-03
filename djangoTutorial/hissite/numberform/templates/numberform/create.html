@@ -1,0 +1,12 @@
+{% extends 'numberform/base.html' %}
+
+{% block title %} Create New List {% endblock %}
+
+{% block content %}
+Create Page
+<form method="post" action="/numberform/create/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit", name="save">Create New</button>
+</form>
+{% endblock %}

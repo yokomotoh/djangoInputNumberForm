@@ -1,0 +1,46 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>List</title>
+{% endblock %}
+
+{% block content %}
+<ul>
+    <!-- Iterate over object_list -->
+    {% for object in object_list %}
+    <!-- Display Objects -->
+    <li>{{ object.test_number }} <!--(pk: {{ object.pk }})-->
+        - <a href="{% url 'testnumber-detail' object.id %}">Detail</a>
+    </li>
+
+    <hr/>
+    <!-- If object_list is empty -->
+    {% empty %}
+    <li>No objects yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
+<!--DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List</title>
+</head>
+<body>
+<ul>
+
+    {% for object in object_list %}
+
+    <li>{{ object.test_number }} (pk: {{ object.pk }}) (multiple_ten: {{ object.multiple_ten }})</li>
+
+    <hr/>
+
+    {% empty %}
+    <li>No objects yet.</li>
+    {% endfor %}
+</ul>
+
+
+</body>
+</html-->

@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+<title>Test Number</title>
+{% endblock %}
+
+{% block content %}
+<h1>Test Number Home</h1>
+<p>Welcome to Test Number!</p>
+<h2>Dynamic content</h2>
+<p>The Test Numbers has the following record counts:</p>
+<ul>
+    <li><strong>Number of Test Number:</strong> {{ num_testnumber }}</li>
+    <li><strong>Num of Test Number greater than 20:</strong> {{ num_greater_than_twenty_testnumber }}</li>
+</ul>
+
+<p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>
+{% endblock %}
