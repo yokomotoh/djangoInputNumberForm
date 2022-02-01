@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content %}
+<h1>List</h1>
 <ul>
     <!-- Iterate over object_list -->
     {% for object in object_list %}
     <!-- Display Objects -->
     <li>{{ object.test_number }} <!--(pk: {{ object.pk }})-->
-        - <a href="{% url 'testnumber-detail' object.id %}">Detail</a>
+        <!--a href="{% url 'testnumber-detail' object.id %}">Calcul</a-->
+        - <a href="{% url 'testnumber-calcul' object.id %}">Detail</a>
+        - <a href="{% url 'testnumber-update' object.id %}">Edit</a>
+        - <a href="{% url 'testnumber-delete' object.id %}">Delete</a>
     </li>
 
     <hr/>

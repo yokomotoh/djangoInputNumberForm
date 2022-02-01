@@ -8,10 +8,14 @@
 <h1>Test Number Home</h1>
 <p>Welcome to Test Number!</p>
 <h2>Dynamic content</h2>
-<p>The Test Numbers has the following record counts:</p>
+<p>The Test Number has the following record:</p>
 <ul>
     <li><strong>Number of Test Number:</strong> {{ num_testnumber }}</li>
-    <li><strong>Num of Test Number greater than 20:</strong> {{ num_greater_than_twenty_testnumber }}</li>
+    <!--li><strong>Num of Test Number greater than 20:</strong> {{ num_greater_than_twenty_testnumber }}</li-->
+    <li><strong>latest new_model result_test_number(pickle):</strong> {{ latest_new_model_result_test_number }}</li>
+    <li><strong>latest new_model result_number(pickle):</strong> {{ latest_new_model_result_number }}</li>
+    <li><strong>latest new_model test_result(pickle):</strong> {{ latest_new_model_test_result }}</li>
+    <!--li><strong>latest new_model test_time(pickle):</strong> {{ test_time }}</li-->
 </ul>
 
 <p>You have visited this page {{ num_visits }} time{{ num_visits|pluralize }}.</p>

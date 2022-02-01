@@ -32,9 +32,10 @@ urlpatterns += [
     path('<pk>/', InputFormDetailView.as_view(), name='testnumber-detail')
 ]
 
-from .views import InputFormUpdateView
+from .views import InputFormUpdateView, update_view
 urlpatterns += [
     path('<pk>/update/', InputFormUpdateView.as_view(), name='testnumber-update')
+    #path('<pk>/update/', update_view, name='testnumber-update')
 ]
 
 from .views import InputFormDeleteView
@@ -44,4 +45,14 @@ urlpatterns += [
 
 urlpatterns += [
     path('', views.index, name='index'),
+]
+
+from .views import InputFormCalculView
+urlpatterns += [
+    path('<pk>/calcul/', InputFormCalculView.as_view(), name='testnumber-calcul')
+]
+
+from .views import NewModelList
+urlpatterns += [
+    path('newmodellist/', NewModelList.as_view(), name='newmodel-list')
 ]

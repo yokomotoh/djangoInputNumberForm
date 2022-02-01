@@ -5,11 +5,45 @@
 {% endblock %}
 
 {% block content %}
+<h1>Create/Edit  a test_number</h1>
 <form method = "POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{form.as_p }}
-    <input type="submit" value=Submit>
+    <!--{{form.as_p }}-->
+    <ul>
+        <li>test_number_name:
+            <input class="text" type="text" name="test_number_name" value="{{ object.test_number_name }}"></li>
+        <li>test_number: <span id="rangeValue">{{ object.test_number }}</span>
+            <Input class="range" type="range" name="test_number" value="{{ object.test_number }}" min="0" max="100" onChange="rangeSlide(this.value)" onmousemove="rangeSlide(this.value)"></li>
+        <li>test_number_one: <span id="rangeValueOne">{{ object.test_number_one }}</span>
+            <Input class="range" type="range" name="test_number_one" value="{{ object.test_number_one }}" min="0" max="100" onChange="rangeSlideOne(value)" onmousemove="rangeSlideOne(value)"></li>
+        <li>test_number_two: <span id="rangeValueTwo">{{ object.test_number_two }}</span>
+            <Input class="range" type="range" name="test_number_two" value="{{ object.test_number_two }}" min="0" max="100" onChange="rangeSlideTwo(this.value)" onmousemove="rangeSlideTwo(this.value)"></li>
+        <input type="submit" value=Submit>
+    </ul>
 </form>
+
+<script type="text/javascript">
+        function rangeSlide(value) {
+            document.getElementById('rangeValue').innerHTML = value;
+        }
+        function rangeSlideOne(value) {
+            document.getElementById('rangeValueOne').innerHTML = value;
+        }
+        function rangeSlideTwo(value) {
+            document.getElementById('rangeValueTwo').innerHTML = value;
+        }
+</script>
+
+
+
+
+<!--meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="style.css"-->
+
+
+
+
 {% endblock %}
 
 <!--DOCTYPE html>

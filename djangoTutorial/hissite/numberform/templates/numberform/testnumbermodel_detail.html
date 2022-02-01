@@ -1,18 +1,318 @@
 {% extends "base_generic.html" %}
 
 {% block title %}
-<title>Detail</title>
+<title>Calcul</title>
 {% endblock %}
 
 {% block content %}
-<h1>{{ object.test_number }}</h1>
+<h1>Calcul of {{ object.test_number }}</h1>
 
-<p>{{ object.test_number }}</p>
-<p>multiple_ten: {{ object.multiple_ten }}</p>
+<p>test_number: {{ object.test_number }}
+    test_number_one: {{ object.test_number_one }}
+    test_number_two: {{ object.test_number_two }}</p>
+<!--p>multiple_ten: {{ object.multiple_ten }}</p-->
+<!--p>calc: {{ object.calc }}</p-->
+
+<form action="{% url 'testnumber-list' %}" method="PUT">
+    {% csrf_token %}
+    <label for="object_test_number_save">Result of calcul (->new test_number) :</label>
+    <!--input type="number" value={{object.test_number}} name="" id="object_test_number_save" onclick="{{ object.save }}">
+    <button type="submit" name="submit">save calcul</button-->
+    <a type="number" name="" id="object_test_number_save" onclick="{{ object.save }}"> {{object.test_number}}, {{ object.test_number_one }}, {{ object.test_number_two }} </a>
+</form>
+
+<h2>Pie Chart of results</h2>
+<meta name="viewport" content=
+        "width=device-width, initial-scale=1.0">
+<style>
+        .piechart {
+            /* margin-top: 300px;*/
+            display: block;
+            /* position: absolute;*/
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: conic-gradient(
+                pink {{object.test_number}}deg,
+                lightblue 0 {{object.multiple_ten}}deg,
+                orange 0);
+        }
+
+        body,
+        .piechart {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .piechart_one {
+            /* margin-top: 300px;*/
+            display: block;
+            /* position: absolute;*/
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: conic-gradient(
+                pink {{object.test_number_one}}deg,
+                lightblue 0 {{object.multiple_ten}}deg,
+                orange 0);
+        }
+
+        body,
+        .piechart_one {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .piechart_two {
+            /* margin-top: 300px;*/
+            display: block;
+            /* position: absolute;*/
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-image: conic-gradient(
+                pink {{object.test_number_two}}deg,
+                lightblue 0 {{object.multiple_ten}}deg,
+                orange 0);
+        }
+
+        body,
+        .piechart_two {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+<table>
+    <tr>
+        <td><div class="piechart">Result of calcul(Pink)<br>multiple_ten(blue)</div></td>
+        <td><div class="piechart_one">Result of calcul_one(Pink)<br>multiple_ten(blue)</div></td>
+        <td><div class="piechart_two">Result of calcul_two(Pink)<br>multiple_ten(blue)</div></td>
+    </tr>
+</table>
+
+<br>
+
+<style>
+.gauge {
+    position: relative;
+    border-radius: 50%/100% 100% 0 0;
+    background-color: var(--color, #a22);
+    overflow: hidden;
+}
+.gauge:before{
+    content: "";
+    display: block;
+    padding-top: 50%;   /* ratio of 2:1*/
+}
+.gauge .chart {
+  overflow: hidden;
+}
+.gauge .mask {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  top: 40%;
+  background-color: #fff;
+  border-radius: 50%/100% 100% 0 0;
+}
+.gauge .percentage {
+    position:  absolute;
+    top: -1px;
+    left: -1px;
+    bottom: 0;
+    right: -1px;
+    background-color: var(--background, #aaa);
+    transform:rotate(var(--rotation));
+    transform-origin: bottom center;
+    transition-duration: 600;
+}
+.gauge:hover {
+  --rotation: 100deg;
+}
+.gauge .value {
+  position:absolute; bottom:0%; left:0;
+  width:100%;
+  text-align: center;
+}
+.gauge .min {
+  position:absolute;
+  bottom:0; left:5%;
+}
+.gauge .max {
+  position:absolute;
+  bottom:0; right:5%;
+ }
+
+ .gauge_one {
+    position: relative;
+    border-radius: 50%/100% 100% 0 0;
+    background-color: var(--color, #a22);
+    overflow: hidden;
+}
+.gauge_one:before{
+    content: "";
+    display: block;
+    padding-top: 50%;   /* ratio of 2:1*/
+}
+.gauge_one .chart {
+  overflow: hidden;
+}
+.gauge_one .mask {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  top: 40%;
+  background-color: #fff;
+  border-radius: 50%/100% 100% 0 0;
+}
+.gauge_one .percentage {
+    position:  absolute;
+    top: -1px;
+    left: -1px;
+    bottom: 0;
+    right: -1px;
+    background-color: var(--background, #aaa);
+    transform:rotate(var(--rotation));
+    transform-origin: bottom center;
+    transition-duration: 600;
+}
+.gauge_one:hover {
+  --rotation: 100deg;
+}
+.gauge_one .value {
+  position:absolute; bottom:0%; left:0;
+  width:100%;
+  text-align: center;
+}
+.gauge_one .min {
+  position:absolute;
+  bottom:0; left:5%;
+}
+.gauge_one .max {
+  position:absolute;
+  bottom:0; right:5%;
+ }
+
+ .gauge_two {
+    position: relative;
+    border-radius: 50%/100% 100% 0 0;
+    background-color: var(--color, #a22);
+    overflow: hidden;
+}
+.gauge_two:before{
+    content: "";
+    display: block;
+    padding-top: 50%;   /* ratio of 2:1*/
+}
+.gauge_two .chart {
+  overflow: hidden;
+}
+.gauge_two .mask {
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: 0;
+  top: 40%;
+  background-color: #fff;
+  border-radius: 50%/100% 100% 0 0;
+}
+.gauge_two .percentage {
+    position:  absolute;
+    top: -1px;
+    left: -1px;
+    bottom: 0;
+    right: -1px;
+    background-color: var(--background, #aaa);
+    transform:rotate(var(--rotation));
+    transform-origin: bottom center;
+    transition-duration: 600;
+}
+.gauge_two:hover {
+  --rotation: 100deg;
+}
+.gauge_two .value {
+  position:absolute; bottom:0%; left:0;
+  width:100%;
+  text-align: center;
+}
+.gauge_two .min {
+  position:absolute;
+  bottom:0; left:5%;
+}
+.gauge_two .max {
+  position:absolute;
+  bottom:0; right:5%;
+ }
+</style>
+
+<h2>Gauge chart</h2>
+<!--h1>Fast and simple gauge chart (HTML and CSS-only)</h1>
+<p>Set the value by adjusting the <code>--rotation</code> style in the chart's div. Additional parameters: <code>--color</code> and <code>--background</code>.</p-->
+<table>
+    <tr>
+        <td>
+<div class="gauge" style="width: 200px; --rotation:{{object.test_number}}deg; --color:#5cb85c; --background:#e9ecef;">
+    <div class="percentage"></div>
+    <div class="mask"></div>
+    <span class="value">{{object.test_number}}%</span>
+</div></td>
+        <td>
+<div class="gauge_one" style="width: 200px; --rotation:{{object.test_number_one}}deg; --color:#5cb85c; --background:#e9ecef;">
+    <div class="percentage"></div>
+    <div class="mask"></div>
+    <span class="value">{{object.test_number_one}}%</span>
+</div></td>
+        <td>
+            <div class="gauge_two" style="width: 200px; --rotation:{{object.test_number_two}}deg; --color:#5cb85c; --background:#e9ecef;">
+                <div class="percentage"></div>
+                <div class="mask"></div>
+                <span class="value">{{object.test_number_two}}%</span>
+            </div></td>
+    </tr>
+</table>
+<!--p><b>This is the required HTML code:</b></p>
+<pre><code>&lt;div class="gauge" style="width: 200px; --rotation:{{object.test_number}}deg; --color:#5cb85c; --background:#e9ecef;">
+    &lt;div class="percentage">&lt;/div>
+    &lt;div class="mask">&lt;/div>
+    &lt;span class="value">{{object.test_number}}%&lt;/span>
+&lt;/div>
+</code></pre-->
 
 <hr>
-- <a href="{% url 'testnumber-update' object.id %} ">Update</a>
+- <a href="{% url 'testnumber-detail' object.id %}">Calcul</a>
+- <a href="{% url 'testnumber-calcul' object.id %}">Detail</a>
+- <a href="{% url 'testnumber-update' object.id %}">Edit</a>
 - <a href="{% url 'testnumber-delete' object.id %}">Delete</a>
+
+
+<!--a target="_blank" href="{% url 'testnumber-calcul' object.id %}">Calculate</a-->
+<!--a href="{% url 'testnumber-calcul' object.id %}">Calculate</a-->
+<!--form action="{% url 'testnumber-calcul' object.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit" name='mybtn2' value={{ object.increment }}>Calcul</button>
+</form-->
+<!--form action="{% url 'testnumber-calcul' object.id %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" value={{ object.test_number }} onclick="location.href='{% url 'testnumber-calcul' object.id %}'" name='object.test_number'>Calcul</button>
+</form-->
+
+
+<!--p>calcul: {{ object.test_number }}</p-->
+
+<!--form action="" method="POST"-->
+<!--form>
+    {% csrf_token %}
+    <label for=object.test_number>object.test_number:</label>
+    <input type="number" value="{{ object.test_number }}" id="object.test_number" name="object.test_number" />
+    <br> <br>
+    <button type="submit" name="Submit">Submit</button>
+</form-->
+
 {% endblock %}
 
 <!--DOCTYPE html>
